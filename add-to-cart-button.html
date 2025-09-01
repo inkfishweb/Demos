@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Add to Cart Button</title>
+		<style>
+			:where(html) {
+				box-sizing: border-box;
+				font-size: 62.5%;
+			}
+
+			:where(*, *::before, *::after) {
+				box-sizing: inherit;
+				padding: 0;
+				margin: 0;
+			}
+
+			:where(img, svg, iframe) {
+				display: block;
+				max-width: 100%;
+			}
+
+			body {
+				background: #ddd;
+				font: normal normal normal normal 16px / 1 "system-ui";
+				min-height: 100dvh;
+				display: grid;
+				grid: auto / 1fr;
+				place-items: center;
+				perspective: 1500px;
+			}
+
+			button {
+				--radius: 1em;
+				--padding: 0.5em;
+				all: unset;
+				font-size: 5rem;
+				background: 
+					linear-gradient(to bottom, #fff, #ffffff80 2px, #ffffff80 calc(100% - 2px), #fff),
+					linear-gradient(to right, #00000080, transparent 2px, transparent calc(100% - 2px), #00000080);
+				border-radius: var(--radius);
+				position: relative;
+				isolation: isolate;
+				transition: 0.5s ease-in-out;
+				perspective: 800px;
+				padding: var(--padding);
+
+				&::before {
+					content: '';
+					position: absolute;
+					inset: 0;
+					background: conic-gradient(from var(--angle) at 50% 50%, red, blue, green, yellow, red);
+					filter: blur(10px);
+					opacity: 0.25;
+					animation: rotate 1s linear infinite;
+					z-index: -1;
+					border-radius: var(--radius);
+					transition: 0.5s ease-in-out
+				}
+				
+				span {
+					display: inline-block;
+					place-items: center;
+					padding: 1.25em 1.5em;
+					background: #000 linear-gradient(to bottom, #444, #222, #444) padding-box 50% 0% / 100% 200% no-repeat;
+					color: white;
+					border-radius: calc(var(--radius) - 0.5em);
+					position: relative;
+					isolation: isolate;
+					transition: 0.5s ease-in-out;
+					box-shadow: 0 0.25em 0.25em #00000060;
+
+					&::before {
+	
+						content: '';
+						position: absolute;
+						padding: var(--padding);
+						inset: var(--padding);
+						background: #000 linear-gradient(to top, #444, #222, #444) padding-box 50% 100% / 100% 200% no-repeat;
+						z-index: -1;
+						border-radius: 100vw;
+						transition: 0.5s ease-in-out;
+					}
+
+				}
+
+			}
+
+			@property --angle {
+				syntax: "<angle>";
+  			inherits: false;
+  			initial-value: 0deg;
+			}
+
+			@keyframes rotate {
+				to {
+					--angle: 360deg;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+		<button>
+			<span>+ Add to Cart</span>
+		</button>
+	</body>
+</html>
