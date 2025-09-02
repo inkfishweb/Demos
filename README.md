@@ -1,4 +1,4 @@
 # Demos
 Small demo snippets
 
-[Add to Cart Button](https://inkfishweb.github.io/Demos/add-to-cart-button.html)
+<a href="[example.com](https://inkfishweb.github.io/Demos/add-to-cart-button.html)" target="_blank">Add to Cart Button</a>
