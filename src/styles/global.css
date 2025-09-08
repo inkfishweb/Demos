@@ -1,0 +1,148 @@
+@layer reset;
+
+@layer reset {
+	html {
+		box-sizing: border-box;
+		font-size: 62.5%;
+	}
+
+	*, *::before, *::after {
+		box-sizing: inherit;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		font: normal normal normal normal 1.6rem / 1.2 'system-ui';
+		min-height: 100vh;
+	}
+
+	input, textarea, button {
+		font: inherit
+	}
+
+	img, svg, iframe {
+		display: block;
+		max-width: 100%;
+	}
+
+	:is(ul, ol):not([role="list"]) {
+		padding-inline-start: 2.5rem;
+	}
+
+}
+
+main {
+	perspective: 500px;
+	overflow: clip;
+}
+
+section {
+	min-height: 100svh;
+	isolation: isolate;
+}
+
+.reveal {
+	position: relative;
+	animation: reveal ease-in-out both;
+	animation-timeline: view(block);
+	animation-range: entry 50% entry 100%;
+	background: linear-gradient(to bottom, hsl(240deg, 100%, 0%), hsl(240deg 100% 50%));
+}
+
+
+@keyframes reveal {
+	from {
+		clip-path: polygon(40% 100px, 60% 0px, 65% 400px, 42% 300px);
+	}
+	to {
+		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+	}
+}
+
+.remain {
+	background: black;
+	z-index: 1;
+	min-height: 200svh;
+}
+
+.mountains {
+	overflow: clip;
+	isolation: isolate;
+	position: relative;
+	display: grid;
+	grid: "stack" 100svh / 100%;
+	
+	z-index: 2;
+
+	> * {
+		grid-area: stack;
+		height: 100%;
+		object-fit: cover;
+
+	}
+
+	> img {
+		width: 100%;
+	}
+
+	> img:nth-of-type(1) {
+		filter: brightness(15%) drop-shadow(0px 10px 20px #ffffff40);
+		translate: 0% 0%;
+		animation: parallax ease-in-out both;
+		animation-timeline: view(block);
+		animation-range: contain 0% cover 80%;
+	}
+
+	> img:nth-of-type(2) {
+		filter: brightness(10%);
+		animation: parallax ease-in-out both;
+		animation-timeline: view(block);
+		animation-range: contain 0% cover 100%;
+	}
+
+	> img:nth-of-type(3) {
+		filter: brightness(0%);
+	}
+
+}
+
+.moon {
+	position: absolute;
+	inset: 0;
+	padding: 20px;
+	animation: moon ease-in-out forwards;
+	animation-timeline: view(block);
+	animation-range: cover 30% cover 100%;
+
+	&::before {
+		content: '';
+		display: block;
+		width: min(80%, 400px);
+		aspect-ratio: 1;
+		background-color: #fff;
+		background-image: 
+			radial-gradient(ellipse at 75% 30%, #00000008 4%, #afafaf 5%, transparent 5%),
+			radial-gradient(ellipse at 0% 20%, #00000008 9%, #858585 10%, transparent 10%),
+			radial-gradient(ellipse at 45% 60%, #00000008 8%, #858585 8%, transparent 8%),
+			radial-gradient(ellipse at 20% 80%, #00000008 7%, #858585 8%, transparent 8%),
+			radial-gradient(ellipse at 30% 40%, #00000008 9%, #858585 10%, transparent 10%),
+			radial-gradient(ellipse at 0% 60%, #888888 50%, #fff 85%, #fff 100%);
+		border-radius: 50%;
+		box-shadow: 15px -10px 50px 10px white;
+
+	}
+
+}
+
+@keyframes parallax {
+	to {
+		translate: 0% 30%
+	}
+}
+
+@keyframes moon {
+	to {
+		translate: 130vw 50%
+	}
+}
